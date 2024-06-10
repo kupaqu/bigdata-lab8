@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datamart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datamart
+  template:
+    metadata:
+      labels:
+        app: datamart
+    spec:
+      containers:
+        - image: kupaqu/datamart
+          name: datamart
+          ports:
+            - containerPort: 27015
+              protocol: TCP
+          imagePullPolicy: Never

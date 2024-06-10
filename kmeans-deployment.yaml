@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kmeans
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kmeans
+  template:
+    metadata:
+      labels:
+        app: kmeans
+    spec:
+      containers:
+        - env:
+            - name: SPARK_MODE
+              value: master
+          image: kupaqu/kmeans
+          name: kmeans
+          ports:
+            - containerPort: 4040
+              protocol: TCP
+          imagePullPolicy: Never
